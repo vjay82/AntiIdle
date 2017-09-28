@@ -46,6 +46,15 @@ begin
   //SetCursorPos(point.x,point.y);
   mouse_event( MOUSEEVENTF_MOVE, movement, 0, 0, 0);
   movement := movement * -1;
+  keybd_event( VK_NUMLOCK,
+                      $45,
+                      KEYEVENTF_EXTENDEDKEY or 0,
+                      0 );
+
+  keybd_event( VK_NUMLOCK,
+                      $45,
+                      KEYEVENTF_EXTENDEDKEY or KEYEVENTF_KEYUP,
+                      0);
 end;
 
 end.
