@@ -21,6 +21,7 @@ type
   public
     { public declarations }
     movement: integer;
+    scanCode: integer;
   end;
 
 var
@@ -35,6 +36,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   movement := 1;
+  scanCode := MapVirtualKey( VK_CONTROL, 0);
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -46,13 +48,13 @@ begin
   //SetCursorPos(point.x,point.y);
   mouse_event( MOUSEEVENTF_MOVE, movement, 0, 0, 0);
   movement := movement * -1;
-  keybd_event( VK_NUMLOCK,
-                      $45,
+  keybd_event( VK_CONTROL,
+                      scanCode,
                       KEYEVENTF_EXTENDEDKEY or 0,
                       0 );
-
-  keybd_event( VK_NUMLOCK,
-                      $45,
+  //sleep(1000);
+  keybd_event( VK_CONTROL,
+                      scanCode,
                       KEYEVENTF_EXTENDEDKEY or KEYEVENTF_KEYUP,
                       0);
 end;
